@@ -1,4 +1,4 @@
-<p class="has-line-data" data-line-start="0" data-line-end="3">Домашнее задание к занятию “12.1 Компоненты Kubernetes”<br>
+<p class="has-line-data" data-line-start="0" data-line-end="4">Домашнее задание к занятию “12.1 Компоненты Kubernetes”<br>
 Используем Windows 10 and Hyper-V<br>
 <a href="https://www.shaileshjha.com/how-to-setup-kubernetes-using-minikube-in-windows-with-hyper-v/">https://www.shaileshjha.com/how-to-setup-kubernetes-using-minikube-in-windows-with-hyper-v/</a><br>
 Принтскрины в репозитории</p>
@@ -7,7 +7,7 @@ New-Item  -Name 'minikube' -ItemType Directory -Force
 Invoke-WebRequest -OutFile 'Q:\Netologia\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
 Invoke-WebRequest -OutFile 'Q:\Netologia\minikube\kubectl.exe' -Uri 'https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe' -UseBasicParsing
 </code></pre>
-<p class="has-line-data" data-line-start="8" data-line-end="10">Powershell от админа<br>
+<p class="has-line-data" data-line-start="9" data-line-end="11">Powershell от админа<br>
 minikube</p>
 <pre><code>PS Q:\Netologia\minikube&gt; .\minikube.exe version
 minikube version: v1.25.2
@@ -17,7 +17,7 @@ PS Q:\Netologia\minikube&gt; .\kubectl.exe version
 Client Version: version.Info{Major:&quot;1&quot;, Minor:&quot;23&quot;, GitVersion:&quot;v1.23.0&quot;, GitCommit:&quot;ab69524f795c42094a6630298ff53f3c3ebab7f4&quot;, GitTreeState:&quot;clean&quot;, BuildDate:&quot;2021-12-07T18:16:20Z&quot;, GoVersion:&quot;go1.17.3&quot;, Compiler:&quot;gc&quot;, Platform:&quot;windows/amd64&quot;}
 Server Version: version.Info{Major:&quot;1&quot;, Minor:&quot;23&quot;, GitVersion:&quot;v1.23.3&quot;, GitCommit:&quot;816c97ab8cff8a1c72eccca1026f7820e93e0d25&quot;, GitTreeState:&quot;clean&quot;, BuildDate:&quot;2022-01-25T21:19:12Z&quot;, GoVersion:&quot;go1.17.6&quot;, Compiler:&quot;gc&quot;, Platform:&quot;linux/amd64&quot;}
 </code></pre>
-<p class="has-line-data" data-line-start="19" data-line-end="20">Настрайваем на работу с Hyper-V</p>
+<p class="has-line-data" data-line-start="20" data-line-end="21">Настрайваем на работу с Hyper-V</p>
 <pre><code>PS Q:\Netologia\minikube&gt; .\minikube.exe start --driver=hyperv --hyperv-virtual-switch=External_LAN
 * minikube v1.25.2 на Microsoft Windows 10 Pro 10.0.19044 Build 19044
 * Используется драйвер hyperv на основе конфига пользователя
@@ -38,7 +38,7 @@ Server Version: version.Info{Major:&quot;1&quot;, Minor:&quot;23&quot;, GitVersi
 * Включенные дополнения: storage-provisioner, default-storageclass
 * Готово! kubectl настроен для использования кластера &quot;minikube&quot; и &quot;default&quot; пространства имён по умолчанию
 </code></pre>
-<p class="has-line-data" data-line-start="41" data-line-end="42">Смотрим статус</p>
+<p class="has-line-data" data-line-start="42" data-line-end="43">Смотрим статус</p>
 <pre><code>PS Q:\Netologia\minikube&gt; .\minikube.exe status
 minikube
 type: Control Plane
@@ -47,7 +47,7 @@ kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 </code></pre>
-<p class="has-line-data" data-line-start="51" data-line-end="52">Создаем дашбоард</p>
+<p class="has-line-data" data-line-start="52" data-line-end="53">Создаем дашбоард</p>
 <pre><code>PS Q:\Netologia\minikube&gt; kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
 namespace/kubernetes-dashboard created
 serviceaccount/kubernetes-dashboard created
@@ -64,11 +64,11 @@ deployment.apps/kubernetes-dashboard created
 service/dashboard-metrics-scraper created
 deployment.apps/dashboard-metrics-scraper created
 </code></pre>
-<p class="has-line-data" data-line-start="69" data-line-end="70">Запускаем прокси</p>
+<p class="has-line-data" data-line-start="70" data-line-end="71">Запускаем прокси</p>
 <pre><code>PS Q:\Netologia\minikube&gt; kubectl proxy
 Starting to serve on 127.0.0.1:8001
 </code></pre>
-<p class="has-line-data" data-line-start="74" data-line-end="75">В другом окне настрайваем токены доступа</p>
+<p class="has-line-data" data-line-start="75" data-line-end="76">В другом окне настрайваем токены доступа</p>
 <pre><code>PS C:\WINDOWS\system32&gt; cd Q:\Netologia\minikube\
 PS Q:\Netologia\minikube&gt; .\kubectl apply -f .\dashboard-adminuser.yaml
 serviceaccount/admin-user created
@@ -84,7 +84,6 @@ Annotations:  kubernetes.io/service-account.name: admin-user
 Type:  kubernetes.io/service-account-token
 
 Data
-====
 token:      eyJhbGciOiJSUzI1NiIsImtpZCI6InJ4OHkxOEhQRXNYZmsyaklvcFE2X2ZkcG84NENQaEVWUkljeHhvbWVrNjAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLThsanRwIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIxYTI1MDA4NC1iZTM4LTQ3OTctOTc2ZC01OGZmOWFlNmFkNTIiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.lfHXZQ8xoumFAh_Ggx-Yyy4jzjFs3sLCtM0uctaFIuAecZD0X4aE7UGo3p1HPpbpHsmSxfh8CHcPsAwRatHL3hK2mSt3ZR3mATp3soXhzBj6GKnL99B5bl9xJuVO8h4I2sWUXAmT7QzfWWd739NhFeqC7NS-H_EWpeQCr3bS8Lq4eSZo3x4Q0iHwGJg0eMWmdW7PQpLtbtQ_Jg_5yZ63D1pEHG3kbKjvbvVy-GZpkJMVTTNgFhpw8t1pXG_HJAqhTPcveXulou-rjuOLFzwF3oOXgAmmwmshpfkoabHfSK8ubUpxbswT8s5MXWH55QryRiDgCgF2l-A8DcPP3Ld15A
 ca.crt:     1111 bytes
 namespace:  20 bytes
@@ -97,8 +96,15 @@ deployment.apps/hello-node created
 <pre><code>PS Q:\Netologia\minikube&gt; kubectl get deployments
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 hello-node   1/1     1            1           16s
+Q:\Netologia\minikube&gt; .\kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+service/hello-node exposed
+PS Q:\Netologia\minikube&gt; kubectl get services
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+hello-node   LoadBalancer   10.100.215.220   &lt;pending&gt;     8080:30480/TCP   13s
+kubernetes   ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP          61m
+PS Q:\Netologia\minikube&gt; .\minikube service hello-node
 </code></pre>
-<p class="has-line-data" data-line-start="107" data-line-end="108">Добавляеем аддон ingress</p>
+<p class="has-line-data" data-line-start="115" data-line-end="116">Добавляеем аддон ingress</p>
 <pre><code>PS Q:\Netologia\minikube&gt; .\minikube addons enable ingress
   - Используется образ k8s.gcr.io/ingress-nginx/controller:v1.1.1
   - Используется образ k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
