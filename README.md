@@ -1,5 +1,6 @@
 <p class="has-line-data" data-line-start="0" data-line-end="3">Домашнее задание к занятию “12.1 Компоненты Kubernetes”<br>
 Используем Windows 10 and Hyper-V<br>
+<a href="https://www.shaileshjha.com/how-to-setup-kubernetes-using-minikube-in-windows-with-hyper-v/">https://www.shaileshjha.com/how-to-setup-kubernetes-using-minikube-in-windows-with-hyper-v/</a><br>
 Принтскрины в репозитории</p>
 <pre><code>Скачиваем Minikube and kubectl в директорию Q:\Netologia\minikube
 New-Item  -Name 'minikube' -ItemType Directory -Force
